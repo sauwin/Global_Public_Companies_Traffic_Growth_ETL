@@ -1,12 +1,15 @@
-#ELT proces datasetu Global Public Companies Traffic Growth
+# ELT proces datasetu Global Public Companies Traffic Growth
 
-Tento repozitár predstavuje implementáciu ELT procesu v Snowflake a vytvorenie dátového skladu so schémou Star Schema na základe Global Public Companies Traffic Growth datasetu. Projekt je zameraný na obchodnú analýzu tempa rastu Alza.sk, návratnosti investícií, porovnanie s lokálnymi aj globálnymi konkurentmi. Hodnotenie rastu spoločnosti na základe online výsledkov a porovnania s lídrami v odvetví.
+Tento repozitár predstavuje implementáciu ELT procesu v Snowflake a vytvorenie dátového skladu so schémou Star Schema na základe Global Public Companies Traffic 
+Growth datasetu. Projekt je zameraný na obchodnú analýzu tempa rastu Alza.sk, návratnosti investícií, porovnanie s lokálnymi aj globálnymi konkurentmi. Hodnotenie 
+rastu spoločnosti na základe online výsledkov a porovnania s lídrami v odvetví.
 
 ---
-##**1.Úvod a popis zdrojových dát**
+## **1.Úvod a popis zdrojových dát**
 
 **Prečo sme si vybrali dataset:**
-Dataset poskytuje aktuálne dáta o návštevnosti, zdrojoch návštevnosti, angažovanosti používateľov a demografii, čo umožňuje analyzovať rast spoločností a ich online výkonnosť.
+Dataset poskytuje aktuálne dáta o návštevnosti, zdrojoch návštevnosti, angažovanosti používateľov a demografii, čo umožňuje analyzovať rast spoločností 
+a ich online výkonnosť.
 
 **Biznis proces, ktorý dáta podporujú:**
 - Analýza rastu návštevnosti a angažovanosti.
@@ -20,7 +23,9 @@ Dataset poskytuje aktuálne dáta o návštevnosti, zdrojoch návštevnosti, ang
 - Časové údaje (Number) - mesiac, rok.
 
 **Predstavenie tabuľky GLOBAL_GROWTH:**
-Obsahuje mesačné údaje o návštevnosti webov, rozdelené podľa platformy (desktop/mobile), kanálov (organic, paid, social, mail, referrals), a demografie používateľov. Obsahuje aj globálny a kategóriový ranking, metriky engagementu (pages per visit, bounce rate, visit duration) a celkovú návštevnosť. Slúži na monitorovanie rastu, porovnanie s konkurenciou a hodnotenie efektívnosti online marketingu.
+Obsahuje mesačné údaje o návštevnosti webov, rozdelené podľa platformy (desktop/mobile), kanálov (organic, paid, social, mail, referrals), a demografie 
+používateľov. Obsahuje aj globálny a kategóriový ranking, metriky engagementu (pages per visit, bounce rate, visit duration) a celkovú návštevnosť. Slúži na 
+monitorovanie rastu, porovnanie s konkurenciou a hodnotenie efektívnosti online marketingu.
 
 ### **1.1 Dátová architektúra. ERD diagram**
 
@@ -29,3 +34,5 @@ Obsahuje mesačné údaje o návštevnosti webov, rozdelené podľa platformy (d
     <br>
     <em>Obrázok 1 Entitno-relačná schéma GLOBAL GROWTH</em>
 </p>
+
+---
