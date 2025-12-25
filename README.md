@@ -5,7 +5,7 @@ Growth datasetu. Projekt je zameraný na obchodnú analýzu tempa rastu Alza.sk,
 rastu spoločnosti na základe online výsledkov a porovnania s lídrami v odvetví.
 
 ---
-## **1.Úvod a popis zdrojových dát**
+## **1. Úvod a popis zdrojových dát**
 
 **Prečo sme si vybrali dataset:**
 
@@ -34,7 +34,7 @@ používateľov. Obsahuje aj globálny a kategóriový ranking, metriky engageme
 návštevnosť. Slúži na 
 monitorovanie rastu, porovnanie s konkurenciou a hodnotenie efektívnosti online marketingu.
 
-### **1.1 Dátová architektúra. ERD diagram**
+### **1.1 ERD diagram**
 
 <p align="center">
     <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/erd_scheme.png" alt="ERD Scheme">
@@ -43,7 +43,7 @@ monitorovanie rastu, porovnanie s konkurenciou a hodnotenie efektívnosti online
 </p>
 
 ---
-## **2.Návrh dimenzionálneho modelu**
+## **2. Návrh dimenzionálneho modelu**
 
 Star schema obsahuje 3 tabuľky faktov a 4 tabuľky dimenzií.
 
@@ -100,6 +100,8 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 0
 
+### **2.1 Star diagram**
+
 <p align="center">
     <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/star_scheme.png" alt="Star Scheme">
     <br>
@@ -107,7 +109,7 @@ Typ SCD:
 </p>
 
 ---
-## **3.ELT proces v Snowflake**
+## **3. ELT proces v Snowflake**
 
 Dataset bol získaný zo Snowflake Marketplace:
 Databáza: GLOBAL_PUBLIC_COMPANIES_TRAFFIC_GROWTH
@@ -214,4 +216,4 @@ Tvorba dimenzií so správnym SCD typom:
 - dim_site - SCD Typ 2 
 
 ---
-## **4.Vizualizácia dát**
+## **4. Vizualizácia dát**
