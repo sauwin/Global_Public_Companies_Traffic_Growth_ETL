@@ -37,7 +37,7 @@ monitorovanie rastu, porovnanie s konkurenciou a hodnotenie efektívnosti online
 ### **1.1 Dátová architektúra. ERD diagram**
 
 <p align="center">
-    <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/erd_schema.png" alt="ERD Schema">
+    <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/erd_scheme.png" alt="ERD Scheme">
     <br>
     <em>Obrázok 1 Entitno-relačná schéma GLOBAL GROWTH</em>
 </p>
@@ -101,11 +101,117 @@ Typ SCD:
 - Typ 0
 
 <p align="center">
-    <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/star_schema.png" alt="Star Schema">
+    <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/star_scheme.png" alt="Star Scheme">
     <br>
-    <em>Obrázok 1 Entitno-relačná schéma GLOBAL GROWTH</em>
+    <em>Obrázok 2 Schéma hviezdy pre GLOBAL GROWTH</em>
 </p>
 
 ---
 ## **3.ELT proces v Snowflake**
 
+Dataset bol získaný zo Snowflake Marketplace:
+Databáza: GLOBAL_PUBLIC_COMPANIES_TRAFFIC_GROWTH
+Schéma: DATAFEEDS
+Tabuľka: GLOBAL_GROWTH
+
+### **Extract**
+
+Keďže Snowflake Marketplace poskytuje dáta už priamo uložené v Snowflake, nie je potrebné sťahovať CSV alebo JSON súbory.
+Extract fáza spočíva v kopírovaní dát do staging tabuľky, ktorá slúži ako pracovná vrstva pre ďalšie spracovanie.
+
+**Vytvorenie staging tabuľky:**
+
+```sql
+CREATE OR REPLACE TABLE table_staging AS
+SELECT * FROM GLOBAL_PUBLIC_COMPANIES_TRAFFIC_GROWTH.DATAFEEDS.GLOBAL_GROWTH;
+```
+
+### **Load**
+
+V Load fáze sú dáta zo staging tabuľky načítané do dimenzných a faktových tabuliek hviezdicového modelu.
+
+**Naplnenie tabuliek:**
+
+**dim_site**
+```sql
+CREATE OR REPLACE TABLE dim_site AS
+SELECT DISTINCT
+    ROW_NUMBER() OVER (ORDER BY SITE) AS dim_siteId,
+    SITE AS site
+FROM table_staging;
+```
+
+**dim_category**
+```sql
+CREATE OR REPLACE TABLE dim_category AS
+SELECT DISTINCT
+    ROW_NUMBER() OVER (ORDER BY MAIN_CATEGORY, SITE_CATEGORY) AS dim_categoryId,
+    MAIN_CATEGORY AS main_category,
+    SITE_CATEGORY AS full_category
+FROM table_staging;
+```
+
+**dim_date**
+```sql
+CREATE OR REPLACE TABLE dim_date AS
+SELECT DISTINCT
+    ROW_NUMBER() OVER (ORDER BY year, month) AS dim_dateId,
+    YEAR AS year,
+    MONTH AS month
+FROM table_staging;
+```
+
+**dim_age_group**
+```sql
+CREATE OR REPLACE TABLE dim_age_group AS
+SELECT
+    ROW_NUMBER() OVER (ORDER BY age_from) AS dim_ageGroupId,
+    label,
+    age_from,
+    age_to
+FROM (
+    SELECT '18-24' AS label, 18 AS age_from, 24 AS age_to UNION ALL
+    SELECT '25-34', 25, 34 UNION ALL
+    SELECT '35-44', 35, 44 UNION ALL
+    SELECT '45-54', 45, 54 UNION ALL
+    SELECT '55-64', 55, 64 UNION ALL
+    SELECT '65+', 65, NULL
+);
+```
+
+**fact_rank**
+```sql
+
+```
+
+**fact_audience_share**
+```sql
+
+```
+
+**fact_visits**
+```sql
+
+```
+
+### **Transform**
+
+Transformačná fáza zahŕňa čistenie, deduplikáciu, typové konverzie a analytické výpočty.
+
+Čistenie a deduplikácia:
+- použitie SELECT DISTINCT
+- odstránenie duplicitných kombinácií site + year + month
+
+Typové konverzie:
+- TOTAL_ESTIMATED_VISITS::INT
+- DESKTOP_ESTIMATED_VISITS::INT
+- MOBILEWEB_ESTIMATED_VISITS::INT
+
+Tvorba dimenzií so správnym SCD typom:
+- dim_date - SCD Typ 0
+- dim_age_group - SCD Typ 0
+- dim_category - SCD Typ 1
+- dim_site - SCD Typ 2 
+
+---
+## **4.Vizualizácia dát**
