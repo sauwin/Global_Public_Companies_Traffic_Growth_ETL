@@ -139,7 +139,7 @@ V Load fáze sú dáta zo staging tabuľky načítané do dimenzných a faktový
 CREATE OR REPLACE TABLE dim_site AS
 SELECT DISTINCT
     ROW_NUMBER() OVER (ORDER BY SITE) AS dim_siteId,
-    SITE AS site
+    CLEAN_SITE AS site
 FROM table_staging;
 ```
 
