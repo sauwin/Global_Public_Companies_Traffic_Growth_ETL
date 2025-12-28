@@ -243,6 +243,8 @@ SELECT
             ) 
     END AS cz_sk_category_rank,
 
+    f.CATEGORY_RANK AS global_category_rank,
+
     ds.dim_siteId AS siteId,
     dd.dim_dateId AS dateId,
     dc.dim_categoryId AS categoryId
