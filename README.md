@@ -100,7 +100,17 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 0
 
-### **2.1 Star diagram**
+### **2.1 Matrix bus**
+
+Na identifikáciu prepojení biznis procesov a dimenzií použili sme matrix bus
+
+| **Business processes** | **Site** | **Category** | **Date** | **Age Group** |
+|------------------------|----------|--------------|----------|---------------|
+| **Site ranking**       | x        | x            | x        |               |
+| **Web traffic**        | x        | x            | x        |               |
+| **Audience**           | x        |              | x        | x             |
+
+### **2.2 Star diagram**
 
 <p align="center">
     <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/star_scheme.png" alt="Star Scheme">
@@ -248,9 +258,9 @@ CREATE OR REPLACE TABLE fact_audience_share AS
 SELECT 
     ROW_NUMBER() OVER (ORDER BY f.CLEAN_SITE) AS fact_audienceShareId,
     f.TOTAL_RANK_SHARE AS total_rank_share,
-    dag.dim_ageGroupId AS ageGroupId,
+    ds.dim_siteid AS siteId,
     dd.dim_dateid AS dateId,
-    ds.dim_siteid AS siteId
+    dag.dim_ageGroupId AS ageGroupId
 FROM (
     SELECT
         TOTAL_AGES_18_TO_24_SHARE AS TOTAL_RANK_SHARE,
@@ -306,6 +316,7 @@ CREATE OR REPLACE TABLE fact_visits AS
 SELECT
     ROW_NUMBER() OVER (ORDER BY f.CLEAN_SITE) AS fact_visitsId,
     f.TOTAL_ESTIMATED_VISITS AS total_visits,
+    f.TOTAL_ESTIMATED_UNIQUE AS unique_estimated_visits,
     f.DESKTOP_ESTIMATED_VISITS AS desktop_estimated_visits,
     f.MOBILEWEB_ESTIMATED_VISITS AS mobileweb_estimated_visits,
     ds.dim_siteId AS siteId,
