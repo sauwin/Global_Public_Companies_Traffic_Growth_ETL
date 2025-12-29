@@ -11,8 +11,6 @@ s lokálnymi aj globálnymi konkurentmi. Hodnotenie rastu spoločnosti na zákla
 
 Dataset poskytuje aktuálne dáta o návštevnosti, zdrojoch návštevnosti, angažovanosti používateľov a demografii, čo umožňuje analyzovať 
 rast spoločností a ich online výkonnosť.
-Dataset je dostupný na nasledujúcom odkaze: 
-**https://app.snowflake.com/us-west-2/ekb34221/#/data/shared/SNOWFLAKE_DATA_MARKETPLACE/listing/GZT1ZA3NJL?originTab=databases&database=GLOBAL_PUBLIC_COMPANIES_TRAFFIC_GROWTH**
 
 **Biznis proces, ktorý dáta podporujú:**
 
@@ -208,6 +206,8 @@ Tabuľka: GLOBAL_GROWTH
 
 Keďže Snowflake Marketplace poskytuje dáta už priamo uložené v Snowflake, nie je potrebné sťahovať CSV alebo JSON súbory.
 Extract fáza spočíva v kopírovaní dát do staging tabuľky, ktorá slúži ako pracovná vrstva pre ďalšie spracovanie.
+Dataset je dostupný na nasledujúcom odkaze: 
+**https://app.snowflake.com/us-west-2/ekb34221/#/data/shared/SNOWFLAKE_DATA_MARKETPLACE/listing/GZT1ZA3NJL?originTab=databases&database=GLOBAL_PUBLIC_COMPANIES_TRAFFIC_GROWTH**
 
 #### **Vytvorenie staging tabuľky:**
 
