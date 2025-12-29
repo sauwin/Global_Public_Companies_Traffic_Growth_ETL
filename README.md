@@ -427,6 +427,10 @@ Tvorba dimenzií so správnym SCD typom:
 ---
 ## **4. Vizualizácia dát**
 
+Dashboard poskytuje komplexný prehľad návštevnosti, rebríčkov a publika slovenských a českých internetových obchodov. Vizualizácie 
+umožňujú ľahko interpretovať údaje a pomáhajú pri rozhodovaní o optimalizácii marketingových stratégií, odporúčacích systémov a 
+demografickej analýzy pre Alza.
+
 <p align="center">
     <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/alza_dashboard.png" alt="Dashboard">
     <br>
@@ -434,6 +438,10 @@ Tvorba dimenzií so správnym SCD typom:
 </p>
 
 ### **Graf 1: Porovnanie dynamiky zhľadnutí alza.cz a alza.sk**
+Táto vizualizácia zobrazuje mesačný vývoj návštevnosti dvoch hlavných e-shopov, alza.sk a alza.cz. Umožňuje porovnávať dynamiku trhu v 
+Slovenskej a Českej republike a identifikovať obdobia s nárastom alebo poklesom návštevnosti. Tieto informácie môžu byť využité na 
+strategické rozhodovanie, optimalizáciu marketingových kampaní alebo plánovanie rozvoja webu.
+
 ```sql
 SELECT 
     CONCAT(LPAD(dd.month, 2, '0'), '/', dd.year) AS month, 
@@ -456,6 +464,10 @@ ORDER BY dd.month ASC;
 ```
 
 ### **Graf 2: Kumulatívny počet unikátnych zhľadnutí alza.sk v čase**
+Táto vizualizácia zobrazuje kumulatívny rast unikátnych návštevníkov webu alza.sk v priebehu času. Umožňuje sledovať trend rastu publika a 
+identifikovať obdobia s najväčším prírastkom nových návštevníkov. Tieto údaje sú užitočné pre plánovanie marketingových aktivít, 
+optimalizáciu obsahu a lepšie porozumenie správania používateľov.
+
 ```sql
 SELECT 
     ROUND(SUM(f.unique_estimated_visits) OVER (ORDER BY dd.month), 2) AS unique_visits,
@@ -468,6 +480,10 @@ ORDER BY dd.month ASC;
 ```
 
 ### **Graf 3: Analýza dynamiky ratingu alza.sk v rámci kategórie v čase**
+Táto vizualizácia sleduje vývoj globálneho kategóriového poradia webu alza.sk v priebehu času. Umožňuje identifikovať zmeny pozície v 
+rámci konkrétnej kategórie a porovnávať výkonnosť oproti konkurencii. Tieto informácie sú užitočné pre benchmarking, optimalizáciu obsahu 
+a strategické rozhodovanie o marketingových aktivitách.
+
 ```sql
 SELECT 
     CONCAT(LPAD(dd.month, 2, '0'), '/', dd.year) AS month, 
@@ -480,6 +496,10 @@ ORDER BY dd.month ASC;
 ```
 
 ### **Graf 4: Celkový počet návštev webu alza.sk podľa typu zariadenia**
+Táto vizualizácia zobrazuje rozdelenie návštevnosti webu alza.sk podľa typu zariadenia – desktop a mobilný web. Umožňuje pochopiť, aké 
+zariadenia používatelia preferujú pri návšteve e-shopu. Tieto údaje sú užitočné pri optimalizácii používateľského rozhrania, mobilnej 
+verzie webu a pri plánovaní marketingových kampaní zameraných na konkrétne zariadenia.
+
 ```sql
 SELECT 
     ROUND(SUM(f.desktop_estimated_visits), 2) AS desktop,
@@ -490,6 +510,10 @@ WHERE ds.site = 'alza.sk';
 ```
 
 ### **Graf 5: Top 10 slovenských a českých e-shopov podľa priemerného ratingu**
+Táto vizualizácia zobrazuje desať najlepšie hodnotených e-shopov na Slovensku a v Českej republike v rámci vybraných kategórií (shopping a 
+consumer electronics). Umožňuje identifikovať najvýkonnejšie weby a porovnávať ich priemerné ratingy. Tieto informácie sú užitočné pri 
+analýze konkurencie a plánovaní marketingových stratégií.
+
 ```sql
 SELECT 
     ds.site AS site, 
@@ -506,6 +530,10 @@ LIMIT 10;
 ```
 
 ### **Graf 6: Priemerný počet zhľadnutí alza.sk podľa vekových kategórií**
+Táto vizualizácia zobrazuje priemerný počet návštev webu alza.sk rozdelený podľa vekových skupín používateľov. Umožňuje analyzovať, ktoré 
+vekové kategórie tvoria najväčšiu časť publika, a poskytuje cenné informácie pre cielenie marketingových kampaní, odporúčacie systémy a 
+optimalizáciu obsahu pre rôzne demografické skupiny.
+
 ```sql
 SELECT 
     dag.label AS age_group,
@@ -517,4 +545,3 @@ WHERE ds.site = 'alza.sk'
 GROUP BY dag.label
 ORDER BY avg_visits ASC;
 ```
-
