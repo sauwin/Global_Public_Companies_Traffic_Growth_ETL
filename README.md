@@ -436,11 +436,6 @@ Transformačná fáza zahŕňa čistenie, deduplikáciu, typové konverzie a ana
 - použitie SELECT DISTINCT
 - odstránenie duplicitných kombinácií site + year + month
 
-Typové konverzie:
-- TOTAL_ESTIMATED_VISITS::INT
-- DESKTOP_ESTIMATED_VISITS::INT
-- MOBILEWEB_ESTIMATED_VISITS::INT
-
 Tvorba dimenzií so správnym SCD typom:
 - dim_date - SCD Typ 0
 - dim_age_group - SCD Typ 0
