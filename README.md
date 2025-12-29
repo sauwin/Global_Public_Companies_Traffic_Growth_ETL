@@ -2,7 +2,7 @@
 
 Tento repozitár predstavuje implementáciu ELT procesu v Snowflake a vytvorenie dátového skladu so schémou Star Schema na základe Global Public Companies Traffic 
 Growth datasetu. Projekt je zameraný na obchodnú analýzu tempa rastu Alza.sk, návratnosti investícií, porovnanie s lokálnymi aj globálnymi konkurentmi. Hodnotenie 
-rastu spoločnosti na základe online výsledkov a porovnania s lídrami v odvetví.
+rastu spoločnosti na základe online výsledkov a porovnania s konkurentmi v odvetví.
 
 ---
 ## **1. Úvod a popis zdrojových dát**
@@ -10,8 +10,7 @@ rastu spoločnosti na základe online výsledkov a porovnania s lídrami v odvet
 **Prečo sme si vybrali dataset:**
 
 Dataset poskytuje aktuálne dáta o návštevnosti, zdrojoch návštevnosti, angažovanosti používateľov a demografii, čo umožňuje analyzovať 
-rast spoločností 
-a ich online výkonnosť.
+rast spoločností a ich online výkonnosť.
 
 **Biznis proces, ktorý dáta podporujú:**
 
@@ -76,6 +75,9 @@ Vzťah k dim tabuľkám:
 - 1:N dim_site
 - 1:N dim_date
 
+Tabuľka uchováva globálne a regionálne (CZ/SK) poradia webov, vrátane celkového aj kategóriového rankingu. Slúži ako centrálna faktová tabuľka pre analytické
+výpočty a porovnávanie výkonnosti webov v jednotlivých kategóriách a časových obdobiach.
+
 ### fact_audience_share
 Obsah údajov:
 - fact_audienceShareId INT Primary key
@@ -88,6 +90,9 @@ Vzťah k dim tabuľkám:
 - 1:N dim_site
 - 1:N dim_date
 - 1:N dim_age_group
+
+Tabuľka zachytáva mieru zastúpenia používateľov jednotlivých vekových kategórií na konkrétnych webových stránkach a umožňuje analyzovať demografické rozdelenie 
+návštevnosti v čase.
 
 ### fact_visits
 Obsah údajov:
@@ -105,6 +110,9 @@ Vzťah k dim tabuľkám:
 - 1:N dim_site
 - 1:N dim_date
 
+Tabuľka zaznamenáva celkový počet návštev, odhadovaný počet unikátnych návštev a rozdelenie návštevnosti podľa zariadení (desktop a mobileweb). Slúži na analýzu 
+výkonnosti webov v rámci jednotlivých kategórií a časových období.
+
 ### **Dimenzné tabuľky:**
 
 ### dim_site
@@ -119,6 +127,9 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 2
 
+Tabuľka uchováva názvy webových stránok a slúži ako spoločná dimenzia pre viaceré faktové tabuľky, čo umožňuje analyzovať rebríčky, návštevnosť a podiel publika 
+pre jednotlivé weby.
+
 ### dim_category
 Obsah údajov:
 - main_category VARCHAR(60)
@@ -130,6 +141,8 @@ Vzťah k fact tabuľkám:
 
 Typ SCD:
 - Typ 1
+
+Tabuľka uchováva hlavnú kategóriu a jej detailnejšie členenie, ktoré umožňuje analyzovať výkonnosť webov v rámci širších aj konkrétnych tematických oblastí.
 
 ### dim_date
 Obsah údajov:
@@ -144,6 +157,9 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 0
 
+Tabuľka uchováva základné časové atribúty, ako rok a mesiac, ktoré umožňujú analyzovať trendy, sezónnosť a vývoj metrík v čase naprieč všetkými faktovými 
+tabuľkami.
+
 ### dim_age_group
 Obsah údajov:
 - label VARCHAR(6)
@@ -155,6 +171,9 @@ Vzťah k fact tabuľkám:
 
 Typ SCD:
 - Typ 0
+
+Tabuľka definuje vekové intervaly používateľov prostredníctvom označenia skupiny a hraníc veku, čo umožňuje analyzovať podiel publika webových stránok z pohľadu 
+demografie.
 
 ### **2.1 Matrix bus**
 
