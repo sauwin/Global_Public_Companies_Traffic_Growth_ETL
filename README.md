@@ -564,6 +564,6 @@ GROUP BY dag.label
 ORDER BY avg_visits ASC;
 ```
 ---
-Táto vizualizácia zobrazuje mesačný vývoj návštevnosti dvoch hlavných e-shopov, alza.sk a alza.cz. Umožňuje porovnávať dynamiku trhu v 
-Slovenskej a Českej republike a identifikovať obdobia s nárastom alebo poklesom návštevnosti. Tieto informácie môžu byť využité na 
-strategické rozhodovanie, optimalizáciu marketingových kampaní alebo plánovanie rozvoja webu.
+Dashboard obsahuje 6 vizualizácií, ktoré poskytujú prehľad o kľúčových metrikách a trendoch týkajúcich sa návštevnosti, hodnotení a 
+demografie používateľov e-shopu alza.sk a konkurenčných webov. Tieto vizualizácie umožňujú lepšie porozumieť správaní používateľov, 
+identifikovať trendy na trhu a podporujú rozhodovanie pri optimalizácii marketingu, obsahu a odporúčacích systémov.
