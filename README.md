@@ -60,7 +60,47 @@ Dimenzné tabuľky:
 
 ### **Faktové tabuľky:**
 
+### fact_rank
+Obsah údajov:
+- fact_rankId INT Primary key
+- global_rank INT
+- cz_sk_rank INT
+- global_category_rank INT
+- cz_sk_category_rank INT
+- siteId INT Foreign key
+- categoryId INT Foreign key
+- dateId INT Foreign key
+Vzťah k dim tabuľkám:
+- 1:N dim_category
+- 1:N dim_site
+- 1:N dim_date
 
+### fact_audience_share
+Obsah údajov:
+- fact_audienceShareId INT Primary key
+- total_rank_share FLOAT
+- siteId INT Foreign key
+- dateId INT Foreign key
+- ageGroupId INt Foreign key
+Vzťah k dim tabuľkám:
+- 1:N dim_site
+- 1:N dim_date
+- 1:N dim_age_group
+
+### fact_visits
+Obsah údajov:
+- fact_visitsId INT Primary key
+- total_visits INT
+- unique_estimated_visits INT
+- desktop_estimated_visits INT
+- mobileweb_estimated_visits INT
+- siteId INT Foreign key
+- dateId INT Foreign key
+- categoryId INT Foreign key
+Vzťah k dim tabuľkám:
+- 1:N dim_category
+- 1:N dim_site
+- 1:N dim_date
 
 ### **Dimenzné tabuľky:**
 
@@ -68,16 +108,19 @@ Dimenzné tabuľky:
 Obsah údajov:
 - site VARCHAR(60)
 Vzťah k fact tabuľkám:
-- 1:N ku všetkým faktom
+- 1:N fact_rank
+- 1:N fact_audience_share
+- 1:N fact_visits
 Typ SCD:
 - Typ 2
 
 ### dim_category
 Obsah údajov:
 - main_category VARCHAR(60)
-- site_category VARCHAR(120)
+- full_category VARCHAR(120)
 Vzťah k fact tabuľkám:
-- 1:N k fact_visits, fact_rank
+- 1:N fact_rank
+- 1:N fact_visits
 Typ SCD:
 - Typ 1
 
@@ -86,7 +129,9 @@ Obsah údajov:
 - year INT
 - month INT
 Vzťah k fact tabuľkám:
-- 1:N ku všetkým faktom
+- 1:N fact_rank
+- 1:N fact_audience_share
+- 1:N fact_visits
 Typ SCD:
 - Typ 0
 
@@ -96,7 +141,7 @@ Obsah údajov:
 - age_from INT
 - age_to INT
 Vzťah k fact tabuľkám:
-- 1:N k fact_audience_share
+- 1:N fact_audience_share
 Typ SCD:
 - Typ 0
 
@@ -351,6 +396,12 @@ Tvorba dimenzií so správnym SCD typom:
 
 ---
 ## **4. Vizualizácia dát**
+
+<p align="center">
+    <img src="https://github.com/sauwin/Global_Public_Companies_Traffic_Growth_ETL/blob/main/img/alza_dashboard.png" alt="Dashboard">
+    <br>
+    <em>Obrázok 3 Dashboard Global Public Companies Traffic Growth datasetu</em>
+</p>
 
 ### **Graf 1: Porovnanie dynamiky zhľadnutí alza.cz a alza.sk**
 ```sql
