@@ -1,8 +1,8 @@
 # ELT proces datasetu Global Public Companies Traffic Growth
 
-Tento repozitár predstavuje implementáciu ELT procesu v Snowflake a vytvorenie dátového skladu so schémou Star Schema na základe Global Public Companies Traffic 
-Growth datasetu. Projekt je zameraný na obchodnú analýzu tempa rastu Alza.sk, návratnosti investícií, porovnanie s lokálnymi aj globálnymi konkurentmi. Hodnotenie 
-rastu spoločnosti na základe online výsledkov a porovnania s konkurentmi v odvetví.
+Tento repozitár predstavuje implementáciu ELT procesu v Snowflake a vytvorenie dátového skladu so schémou Star Schema na základe Global 
+Public Companies Traffic Growth datasetu. Projekt je zameraný na obchodnú analýzu tempa rastu Alza.sk, návratnosti investícií, porovnanie
+s lokálnymi aj globálnymi konkurentmi. Hodnotenie rastu spoločnosti na základe online výsledkov a porovnania s konkurentmi v odvetví.
 
 ---
 ## **1. Úvod a popis zdrojových dát**
@@ -28,10 +28,8 @@ rast spoločností a ich online výkonnosť.
 **Predstavenie tabuľky GLOBAL_GROWTH:**
 
 Obsahuje mesačné údaje o návštevnosti webov, rozdelené podľa platformy (desktop/mobile), kanálov (organic, paid, social, mail, referrals), 
-a demografie 
-používateľov. Obsahuje aj globálny a kategóriový ranking, metriky engagementu (pages per visit, bounce rate, visit duration) a celkovú 
-návštevnosť. Slúži na 
-monitorovanie rastu, porovnanie s konkurenciou a hodnotenie efektívnosti online marketingu.
+a demografie používateľov. Obsahuje aj globálny a kategóriový ranking, metriky engagementu (pages per visit, bounce rate, visit duration) 
+a celkovú návštevnosť. Slúži na monitorovanie rastu, porovnanie s konkurenciou a hodnotenie efektívnosti online marketingu.
 
 ### **1.1 ERD diagram**
 
@@ -75,8 +73,8 @@ Vzťah k dim tabuľkám:
 - 1:N dim_site
 - 1:N dim_date
 
-Tabuľka uchováva globálne a regionálne (CZ/SK) poradia webov, vrátane celkového aj kategóriového rankingu. Slúži ako centrálna faktová tabuľka pre analytické
-výpočty a porovnávanie výkonnosti webov v jednotlivých kategóriách a časových obdobiach.
+Tabuľka uchováva globálne a regionálne (CZ/SK) poradia webov, vrátane celkového aj kategóriového rankingu. Slúži ako centrálna faktová 
+tabuľka pre analytické výpočty a porovnávanie výkonnosti webov v jednotlivých kategóriách a časových obdobiach.
 
 ### fact_audience_share
 Obsah údajov:
@@ -91,8 +89,8 @@ Vzťah k dim tabuľkám:
 - 1:N dim_date
 - 1:N dim_age_group
 
-Tabuľka zachytáva mieru zastúpenia používateľov jednotlivých vekových kategórií na konkrétnych webových stránkach a umožňuje analyzovať demografické rozdelenie 
-návštevnosti v čase.
+Tabuľka zachytáva mieru zastúpenia používateľov jednotlivých vekových kategórií na konkrétnych webových stránkach a umožňuje analyzovať 
+demografické rozdelenie návštevnosti v čase.
 
 ### fact_visits
 Obsah údajov:
@@ -110,8 +108,8 @@ Vzťah k dim tabuľkám:
 - 1:N dim_site
 - 1:N dim_date
 
-Tabuľka zaznamenáva celkový počet návštev, odhadovaný počet unikátnych návštev a rozdelenie návštevnosti podľa zariadení (desktop a mobileweb). Slúži na analýzu 
-výkonnosti webov v rámci jednotlivých kategórií a časových období.
+Tabuľka zaznamenáva celkový počet návštev, odhadovaný počet unikátnych návštev a rozdelenie návštevnosti podľa zariadení (desktop a 
+mobileweb). Slúži na analýzu výkonnosti webov v rámci jednotlivých kategórií a časových období.
 
 ### **Dimenzné tabuľky:**
 
@@ -127,8 +125,8 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 2
 
-Tabuľka uchováva názvy webových stránok a slúži ako spoločná dimenzia pre viaceré faktové tabuľky, čo umožňuje analyzovať rebríčky, návštevnosť a podiel publika 
-pre jednotlivé weby.
+Tabuľka uchováva názvy webových stránok a slúži ako spoločná dimenzia pre viaceré faktové tabuľky, čo umožňuje analyzovať rebríčky, 
+návštevnosť a podiel publika pre jednotlivé weby.
 
 ### dim_category
 Obsah údajov:
@@ -142,7 +140,8 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 1
 
-Tabuľka uchováva hlavnú kategóriu a jej detailnejšie členenie, ktoré umožňuje analyzovať výkonnosť webov v rámci širších aj konkrétnych tematických oblastí.
+Tabuľka uchováva hlavnú kategóriu a jej detailnejšie členenie, ktoré umožňuje analyzovať výkonnosť webov v rámci širších aj konkrétnych 
+tematických oblastí.
 
 ### dim_date
 Obsah údajov:
@@ -157,7 +156,8 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 0
 
-Tabuľka uchováva základné časové atribúty, ako rok a mesiac, ktoré umožňujú analyzovať trendy, sezónnosť a vývoj metrík v čase naprieč všetkými faktovými 
+Tabuľka uchováva základné časové atribúty, ako rok a mesiac, ktoré umožňujú analyzovať trendy, sezónnosť a vývoj metrík v čase naprieč 
+všetkými faktovými 
 tabuľkami.
 
 ### dim_age_group
@@ -172,7 +172,8 @@ Vzťah k fact tabuľkám:
 Typ SCD:
 - Typ 0
 
-Tabuľka definuje vekové intervaly používateľov prostredníctvom označenia skupiny a hraníc veku, čo umožňuje analyzovať podiel publika webových stránok z pohľadu 
+Tabuľka definuje vekové intervaly používateľov prostredníctvom označenia skupiny a hraníc veku, čo umožňuje analyzovať podiel publika 
+webových stránok z pohľadu 
 demografie.
 
 ### **2.1 Matrix bus**
@@ -206,7 +207,7 @@ Tabuľka: GLOBAL_GROWTH
 Keďže Snowflake Marketplace poskytuje dáta už priamo uložené v Snowflake, nie je potrebné sťahovať CSV alebo JSON súbory.
 Extract fáza spočíva v kopírovaní dát do staging tabuľky, ktorá slúži ako pracovná vrstva pre ďalšie spracovanie.
 
-**Vytvorenie staging tabuľky:**
+#### **Vytvorenie staging tabuľky:**
 
 ```sql
 CREATE OR REPLACE TABLE table_staging AS
@@ -217,9 +218,9 @@ SELECT * FROM GLOBAL_PUBLIC_COMPANIES_TRAFFIC_GROWTH.DATAFEEDS.GLOBAL_GROWTH;
 
 V Load fáze sú dáta zo staging tabuľky načítané do dimenzných a faktových tabuliek hviezdicového modelu.
 
-**Naplnenie tabuliek:**
+#### **Naplnenie tabuliek:**
 
-**dim_site**
+#### **dim_site**
 ```sql
 CREATE OR REPLACE TABLE dim_site AS
 SELECT
@@ -230,8 +231,10 @@ FROM (
     FROM TABLE_STAGING
 );
 ```
+Dimenzia poskytuje kontext pre faktové tabuľky a obsahuje údaje o webových stránkach. Transformácia zahŕňa odstránenie duplicít a 
+priradenie unikátneho ID pre každú stránku. Táto dimenzia je typu SCD 2, čo umožňuje sledovať historické zmeny informácií o stránkach.
 
-**dim_category**
+#### **dim_category**
 ```sql
 CREATE OR REPLACE TABLE dim_category AS
 SELECT
@@ -243,8 +246,11 @@ FROM (
     FROM TABLE_STAGING
 );
 ```
+Dimenzia poskytuje kontext pre faktové tabuľky a obsahuje kategórie webových stránok. Transformácia zahŕňa odstránenie duplicít a 
+priradenie unikátneho ID pre každú kombináciu hlavnej a detailnej kategórie. Táto dimenzia je typu SCD 1, teda historické zmeny sa 
+neuchovávajú.
 
-**dim_date**
+#### **dim_date**
 ```sql
 CREATE OR REPLACE TABLE dim_date AS
 SELECT
@@ -256,6 +262,8 @@ FROM (
     FROM TABLE_STAGING
 );
 ```
+Dimenzia poskytuje časový kontext pre faktové tabuľky. Transformácia zahŕňa odstránenie duplicít a priradenie unikátneho ID pre každý rok 
+a mesiac. Táto dimenzia je typu SCD 0, teda historické zmeny sa neuchovávajú.
 
 **dim_age_group**
 ```sql
@@ -274,8 +282,11 @@ FROM (
     SELECT '65+', 65, NULL
 );
 ```
+Dimenzia poskytuje demografický kontext pre faktové tabuľky a obsahuje vekové skupiny používateľov. Transformácia zahŕňa vytvorenie 
+preddefinovaných vekových intervalov a priradenie unikátneho ID pre každú skupinu. Táto dimenzia je typu SCD 0, historické zmeny sa 
+neuchovávajú.
 
-**fact_rank**
+#### **fact_rank**
 ```sql
 CREATE OR REPLACE TABLE fact_rank AS
 WITH f AS (
@@ -328,8 +339,11 @@ LEFT JOIN dim_site ds ON f.CLEAN_SITE = ds.site
 LEFT JOIN dim_date dd ON f.YEAR = dd.year AND f.MONTH = dd.month
 LEFT JOIN dim_category dc ON f.SITE_CATEGORY = dc.full_category;
 ```
+Faktová tabuľka uchováva údaje o globálnom a lokálnom rebríčku webových stránok, vrátane kategóriových rankov pre CZ a SK trh. 
+Transformácia zahŕňa výpočet miestnych a globálnych poradení (DENSE_RANK), filtrovanie CZ/SK stránok a priradenie cudzích kľúčov na 
+dimenzie site, date a category.
 
-**fact_audience_share**
+#### **fact_audience_share**
 ```sql
 CREATE OR REPLACE TABLE fact_audience_share AS
 SELECT 
@@ -386,8 +400,11 @@ LEFT JOIN dim_site ds ON f.CLEAN_SITE = ds.site
 LEFT JOIN dim_date dd ON f.YEAR = dd.year AND f.MONTH = dd.month
 LEFT JOIN dim_age_group dag ON f.age_group = dag.label;
 ```
+Faktová tabuľka uchováva podiel návštevnosti webových stránok podľa vekových skupín. Transformácia zahŕňa rozdelenie dát do 
+preddefinovaných vekových kategórií a priradenie cudzích kľúčov na dimenzie site, date a age_group. Táto tabuľka umožňuje analyzovať 
+demografické správanie používateľov a trend návštevnosti podľa veku.
 
-**fact_visits**
+#### **fact_visits**
 ```sql
 CREATE OR REPLACE TABLE fact_visits AS
 SELECT
@@ -404,6 +421,9 @@ LEFT JOIN dim_site ds ON f.CLEAN_SITE = ds.site
 LEFT JOIN dim_date dd ON f.YEAR = dd.year AND f.MONTH = dd.month
 LEFT JOIN dim_category dc ON f.SITE_CATEGORY = dc.full_category;
 ```
+Faktová tabuľka uchováva údaje o návštevnosti webových stránok vrátane celkových, unikátnych a odhadovaných návštev podľa typu zariadenia 
+(desktop, mobilweb). Transformácia zahŕňa priradenie cudzích kľúčov na dimenzie site, date a category. Táto tabuľka umožňuje analyzovať 
+trendy návštevnosti a porovnávať správanie používateľov medzi rôznymi kategóriami a zariadeniami.
 
 ### **Transform**
 
@@ -426,6 +446,7 @@ Tvorba dimenzií so správnym SCD typom:
 
 ---
 ## **4. Vizualizácia dát**
+
 Dashboard obsahuje **6 vizualizácií**, ktoré poskytujú prehľad o kľúčových metrikách a trendoch týkajúcich sa návštevnosti, hodnotení a 
 demografie používateľov e-shopu alza.sk a konkurenčných webov. Tieto vizualizácie umožňujú lepšie porozumieť správaní používateľov, 
 identifikovať trendy na trhu a podporujú rozhodovanie pri optimalizácii marketingu, obsahu a odporúčacích systémov.
