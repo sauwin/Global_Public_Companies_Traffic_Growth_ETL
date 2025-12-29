@@ -70,6 +70,7 @@ Obsah údajov:
 - siteId INT Foreign key
 - categoryId INT Foreign key
 - dateId INT Foreign key
+
 Vzťah k dim tabuľkám:
 - 1:N dim_category
 - 1:N dim_site
@@ -82,6 +83,7 @@ Obsah údajov:
 - siteId INT Foreign key
 - dateId INT Foreign key
 - ageGroupId INt Foreign key
+
 Vzťah k dim tabuľkám:
 - 1:N dim_site
 - 1:N dim_date
@@ -97,6 +99,7 @@ Obsah údajov:
 - siteId INT Foreign key
 - dateId INT Foreign key
 - categoryId INT Foreign key
+
 Vzťah k dim tabuľkám:
 - 1:N dim_category
 - 1:N dim_site
@@ -107,10 +110,12 @@ Vzťah k dim tabuľkám:
 ### dim_site
 Obsah údajov:
 - site VARCHAR(60)
+
 Vzťah k fact tabuľkám:
 - 1:N fact_rank
 - 1:N fact_audience_share
 - 1:N fact_visits
+
 Typ SCD:
 - Typ 2
 
@@ -118,9 +123,11 @@ Typ SCD:
 Obsah údajov:
 - main_category VARCHAR(60)
 - full_category VARCHAR(120)
+
 Vzťah k fact tabuľkám:
 - 1:N fact_rank
 - 1:N fact_visits
+
 Typ SCD:
 - Typ 1
 
@@ -128,10 +135,12 @@ Typ SCD:
 Obsah údajov:
 - year INT
 - month INT
+
 Vzťah k fact tabuľkám:
 - 1:N fact_rank
 - 1:N fact_audience_share
 - 1:N fact_visits
+
 Typ SCD:
 - Typ 0
 
@@ -140,8 +149,10 @@ Obsah údajov:
 - label VARCHAR(6)
 - age_from INT
 - age_to INT
+
 Vzťah k fact tabuľkám:
 - 1:N fact_audience_share
+
 Typ SCD:
 - Typ 0
 
