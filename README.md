@@ -207,6 +207,7 @@ Tabuľka: GLOBAL_GROWTH
 Keďže Snowflake Marketplace poskytuje dáta už priamo uložené v Snowflake, nie je potrebné sťahovať CSV alebo JSON súbory.
 Extract fáza spočíva v kopírovaní dát do staging tabuľky, ktorá slúži ako pracovná vrstva pre ďalšie spracovanie.
 Dataset je dostupný na nasledujúcom odkaze: 
+
 **https://app.snowflake.com/us-west-2/ekb34221/#/data/shared/SNOWFLAKE_DATA_MARKETPLACE/listing/GZT1ZA3NJL?originTab=databases&database=GLOBAL_PUBLIC_COMPANIES_TRAFFIC_GROWTH**
 
 #### **Vytvorenie staging tabuľky:**
