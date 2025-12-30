@@ -567,3 +567,6 @@ ORDER BY avg_visits ASC;
 Dashboard obsahuje 6 vizualizácií, ktoré poskytujú prehľad o kľúčových metrikách a trendoch týkajúcich sa návštevnosti, hodnotení a 
 demografie používateľov e-shopu alza.sk a konkurenčných webov. Tieto vizualizácie umožňujú lepšie porozumieť správaní používateľov, 
 identifikovať trendy na trhu a podporujú rozhodovanie pri optimalizácii marketingu, obsahu a odporúčacích systémov.
+
+---
+By Maksym Druziuk & Maksym Kulyba
